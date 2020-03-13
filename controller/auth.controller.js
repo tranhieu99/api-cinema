@@ -6,20 +6,28 @@ require('dotenv').config();
 
 const signIn = async (req,res) =>{
     const body = req.body;
-
+try {
     const dataSignIn = await getUser(body.user_name);
-        if(!dataSignIn[0]){
-           return res.status(400).send("User name does not exist");
-        }
-        const checkPassword = await bcrypt.compare(body.pass_word,dataSignIn[0].pass_word)
+    if(!dataSignIn[0]){
+       return res.status(400).send({error: "Tên đăng nhập không có"});
+    }
+    const checkPassword = await bcrypt.compare(body.pass_word,dataSignIn[0].pass_word)
 
-        if(checkPassword){
-            const token = jwt.sign({_id: dataSignIn[0].user_id}, process.env.SECRET_KEY);
-            res.header('auth-token', token).status(200).send(token);
-        }
-        else{
-            res.status(400).send("Wrong password please try again !!")
-        }
+    if(checkPassword){
+        const token = jwt.sign({data:{username:dataSignIn[0].user_name}}, process.env.SECRET_KEY);
+        res.header('auth-token', token).status(200).json({
+            token,
+            
+        });
+    }
+    else{
+        res.status(400).send({error: "Sai mật khẩu"});
+    }
+} catch (error) {
+    return res.status(400).send({error: "Sai tên đăng nhập hoặc mật khẩu"});
+
+}
+
 }
 
  module.exports =  {
