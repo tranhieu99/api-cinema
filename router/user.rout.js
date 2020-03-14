@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
   
   var upload = multer({ storage: storage })
   
- const {uploadUserAvatarController} = require('../controller/user.controller')
+ const {uploadUserAvatarController,updateUserController} = require('../controller/user.controller')
  const router = express.Router()
 
 router.post("/api/upload", upload.single('avatar'), uploadUserAvatarController)
@@ -22,6 +22,7 @@ router.post("/api/upload", upload.single('avatar'), uploadUserAvatarController)
 const {getUserInfoController} = require('../controller/user.controller')
 router.route("/api/user/:user_name")
 .get(getUserInfoController)
+.post(updateUserController)
 
 
 

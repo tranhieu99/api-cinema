@@ -17,6 +17,16 @@ const validateSignUp = (body) =>{
         pass_word: Joi.string()
                       .min(8)
                       .required(),
+        zip_code:  Joi.number()
+        .min(5)
+        .required(),
+        address: Joi.string().required(),
+        country: Joi.string().required(),
+        city: Joi.string().required(),
+        birthday: Joi.date().required(),
+        gender: Joi.string().required(),
+        role: Joi.string().required(),
+        phone_number: Joi.number().required(),
         created: Joi.string()
                     .default(`${date.getDay()} - ${date.getMonth()} - ${date.getFullYear()}`)
     })

@@ -9,6 +9,14 @@ const addUser = (param) => {
                                                 email: param.email,
                                                 user_name:param.user_name, 
                                                 pass_word: param.pass_word,
+                                                zip_code: param.zip_code,
+                                                address: param.address,
+                                                country: param.country,
+                                                city: param.city,
+                                                birthday: param.birthday,
+                                                gender: param.gender,
+                                                role: param.role || 'GUEST',
+                                                phone_number: param.phone_number,
                                                 created: `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`}, (err,results) =>{
             if(err) reject(err);
             else {

@@ -1,4 +1,4 @@
-const {getUserByUserName,uploadUserAvatarModel} = require("../models/user.model")
+const {getUserByUserName,uploadUserAvatarModel, updateUserModel } = require("../models/user.model")
 const getUserInfoController = async (req,res) =>{
     try {
         const userInfor = await getUserByUserName(req.params.user_name)
@@ -20,7 +20,18 @@ res.send({
     console.log(error)
 }
 }
+const updateUserController = async(req,res) =>{
+   try{
+        const updated = await updateUserModel( req.body)
+        res.send({
+            message: "success"
+        })
+   }catch(error){
+       console.log(error)
+   }
+}
 module.exports = {
     getUserInfoController,
-    uploadUserAvatarController
+    uploadUserAvatarController,
+    updateUserController
 }

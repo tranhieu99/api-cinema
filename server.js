@@ -4,6 +4,8 @@ const authRout = require('./router/auth.rout')
 const app = express();
 const signUpRout = require('./router/signup.rout')
 const userRout = require('./router/user.rout')
+const staffRout = require('./router/staff.rout')
+const filmRout = require('./router/film.rout')
 var cors = require('cors')
 app.use(cors())
 app.use(express.static('./uploads'))
@@ -14,7 +16,9 @@ app.use(bodyParser.json())
 
 app.use("/", authRout);
 app.use("/", signUpRout);
+app.use('/',staffRout)
 app.use("/", userRout)
+app.use('/',filmRout)
 app.listen(5555,() =>{
     console.log('App is listen in port', 5555)
 })

@@ -1,7 +1,7 @@
 const {pool} = require('../database/db');
 
 
-const getAllFilm = () => {
+const getAllFilmModel = () => {
     return new Promise((resolve,reject) => {
         pool.query("SELECT * from movie INNER JOIN type ON(movie.movie_type = type.type_id)" , (err,result) => {
             if(err){
@@ -19,5 +19,5 @@ return new Promise((resolve,reject) => {
 })
 }
 module.exports= {
-    getAllFilm
+    getAllFilmModel
 }
