@@ -4,7 +4,6 @@ const {validateSignUp} = require('../validate')
 const shortid = require('shortid');
 
 const signUp = async (req,res) =>{
-    console.log(req.body)
     const {
         first_name,
         last_name,
