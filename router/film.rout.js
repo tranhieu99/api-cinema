@@ -14,13 +14,15 @@ var storage = multer.diskStorage({
   })
   var upload = multer({ storage: storage })
 
-const {getListFilmController,addFilmController,getFilmTypeController,deleteFilmController} = require('../controller/film.controller')
+const {getListFilmController,addFilmController,getFilmTypeController,deleteFilmController,editFilmController,addFilmTypeController} = require('../controller/film.controller')
 router.route("/admin/film")
 .get(getListFilmController)
 router.post('/admin/film', upload.single('movie_image'),addFilmController)
 
-router.route('/admin/film-type').get(getFilmTypeController);
+router.route('/admin/film-type').get(getFilmTypeController).post(addFilmTypeController)
 
 router.delete('/admin/film/delete/:movie_id', deleteFilmController)
+router.put('/admin/film/edit/:movie_id', upload.single('movie_image'), editFilmController)
+
 
 module.exports = router;

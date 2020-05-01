@@ -49,9 +49,33 @@ const deleteFilmModel = (movie_id) => {
         })
     })
 }
+const updateFilmModel = (params,movie_id) =>{
+    return new Promise((resolve,reject) => {
+        pool.query(`UPDATE movie SET ? WHERE movie.movie_id = '${movie_id}'`,params, (err,result) => {
+            if(err) {
+                reject(err)
+            }
+            else resolve(result)
+        })
+    })
+}
+const addFilmTypeModel = (params) => {
+    return new Promise ((resolve,reject) => {
+        pool.query('INSERT INTO type SET ?', params, (err,result) => {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+}
 module.exports = {
     getAllFilmModel,
     addFilmModel,
     getFilmType,
-    deleteFilmModel
+    deleteFilmModel,
+    updateFilmModel,
+    addFilmTypeModel
 }
