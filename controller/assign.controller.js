@@ -1,4 +1,4 @@
-const {getAssignModel,queryAssign, addAssignModel} = require("../models/assign.models")
+const {getAssignModel,queryAssign, addAssignModel, deleteAssignModel} = require("../models/assign.models")
 const shortId = require('shortid')
 const getAssignController =  async (req,res) =>{
     try {
@@ -43,8 +43,22 @@ const addAssignController = async (req,res)=>{
         console.log(error)
     }
 }
+const deleteAssignController = async (req,res) =>{
+try {
+const result = await deleteAssignModel(req.params.id)
+if(result){
+    res.send({
+        message:"success"
+    })
+}
+} catch (error) {
+console.log(error)
+}
+  
+}
 module.exports = {
     getAssignController,
     queryAssignController,
-    addAssignController
+    addAssignController,
+    deleteAssignController
 }
