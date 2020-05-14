@@ -17,7 +17,7 @@ const getListFilmController = async(req,res) =>{
    try {
        const movie_type = transTypeNameToTypeId(req.body.movie_type)
        const dataToAdd = {
-        movie_id: shortId.generate(10),
+        movie_id: `a${shortId.generate(10)}`,
         ...req.body,
         movie_type,
         movie_image: `http://localhost:5555/poster/${req.file.filename}`
