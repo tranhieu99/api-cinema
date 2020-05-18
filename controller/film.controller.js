@@ -1,5 +1,12 @@
 const shortId = require('shortid')
-const {getAllFilmModel,addFilmModel,getFilmType,deleteFilmModel,updateFilmModel,addFilmTypeModel} = require('../models/film.models')
+const {getAllFilmModel,
+    addFilmModel,
+    getFilmType,
+    deleteFilmModel,
+    updateFilmModel,
+    addFilmTypeModel,
+    getSingleMovieModel
+} = require('../models/film.models')
 const  {transTypeNameToTypeId} = require('../helper/helper')
 const getListFilmController = async(req,res) =>{
   try {
@@ -126,11 +133,29 @@ allFilmType.forEach(item =>{
     }
 
 }
+// controller Movie for home page Tran Trung Hieu 14/5/2020
+
+const getSingleMovieController = async (req,res) =>{
+    const {movie_id} = req.params
+try {
+    const singleMovie = await getSingleMovieModel(movie_id)
+    res.send({
+        ...singleMovie[0]
+    })
+} catch (error) {
+    console.log(error)
+    res.send({
+        error: "Error from server"
+    })
+}
+}
+
 module.exports = {
     getListFilmController,
     addFilmController,
     getFilmTypeController,
     deleteFilmController,
     editFilmController,
-    addFilmTypeController
+    addFilmTypeController,
+    getSingleMovieController
 }

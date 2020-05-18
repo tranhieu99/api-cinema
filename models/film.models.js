@@ -71,11 +71,26 @@ const addFilmTypeModel = (params) => {
         })
     })
 }
+
+// models movie hompage Tran Trung Hieu 14/5/2020
+
+const getSingleMovieModel = (movie_id) => {
+    return new Promise((resolve,reject) => {
+        pool.query(`Select * from movie,type where movie.movie_id = "${movie_id}" and movie.movie_type = type.type_id` , (err,result) =>{
+            if(err){
+                reject(err)
+            }
+            else resolve(result)
+        })
+    })
+}
+
 module.exports = {
     getAllFilmModel,
     addFilmModel,
     getFilmType,
     deleteFilmModel,
     updateFilmModel,
-    addFilmTypeModel
+    addFilmTypeModel,
+    getSingleMovieModel
 }
