@@ -8,6 +8,7 @@ const staffRout = require('./router/staff.rout')
 const filmRout = require('./router/film.rout')
 const theatreRout = require('./router/theatre.rout')
 const assignRout = require('./router/asign.rout')
+const billRout = require('./router/bill.rout')
 var cors = require('cors')
 app.use(cors())
 app.use(express.static('./uploads'))
@@ -22,7 +23,8 @@ app.use('/',staffRout)
 app.use("/", userRout)
 app.use('/',filmRout)
 app.use('/', theatreRout);
-app.use('/',assignRout)
+app.use('/',assignRout);
+app.use('/', billRout)
 app.listen(5555,() =>{
     console.log('App is listen in port', 5555)
 })

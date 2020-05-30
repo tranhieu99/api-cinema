@@ -1,4 +1,9 @@
-const {getAssignModel,queryAssign, addAssignModel, deleteAssignModel} = require("../models/assign.models")
+const {getAssignModel,
+    queryAssign, 
+    addAssignModel, 
+    deleteAssignModel,
+    getSingleAssignModel
+} = require("../models/assign.models")
 const shortId = require('shortid')
 const getAssignController =  async (req,res) =>{
     try {
@@ -54,11 +59,23 @@ if(result){
 } catch (error) {
 console.log(error)
 }
-  
 }
+const getSingleAssignController = async(req,res) =>{
+   try {
+       const result = await getSingleAssignModel(req.params.movie_id)
+       res.json(result);
+   } catch (error) {
+       res.json({
+           error: error
+       })
+   }
+}
+      
 module.exports = {
     getAssignController,
     queryAssignController,
     addAssignController,
-    deleteAssignController
+    deleteAssignController,
+    getSingleAssignController
+
 }

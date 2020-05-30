@@ -17,7 +17,11 @@ try {
         const token = jwt.sign({data:{username:dataSignIn[0].user_name}}, process.env.SECRET_KEY);
         res.header('auth-token', token).status(200).json({
             token,
-            role: dataSignIn[0].role
+            user_id: dataSignIn[0].user_id,
+            role: dataSignIn[0].role,
+            first_name: dataSignIn[0].first_name,
+            last_name: dataSignIn[0].last_name,
+            email: dataSignIn[0].email
         });
     }
     else{
