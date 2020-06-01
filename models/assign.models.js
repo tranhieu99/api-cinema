@@ -40,7 +40,7 @@ const deleteAssignModel = (id) =>{
 }
 const getSingleAssignModel = (movie_id) => {
     return new Promise((resolve,reject) =>{
-        pool.query(`SELECT * FROM movie, movie_show, show_time,theatre where movie.movie_id = movie_show.movie_id and theatre.theatre_id = movie_show.theatre_id and movie.movie_id = "${movie_id}" `, (err,result) =>{
+        pool.query(`SELECT * FROM movie, movie_show, show_time,theatre where movie.movie_id = movie_show.movie_id and theatre.theatre_id = movie_show.theatre_id and movie_show.show_time_id = show_time.show_time_id and movie.movie_id = "${movie_id}" `, (err,result) =>{
             if(err){
                 reject(err)
             }
